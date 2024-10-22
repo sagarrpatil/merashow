@@ -7,14 +7,18 @@ const Dashboard = ({ events }) => {
   console.log(events)
   return (
     <ApexChartWrapper>
-      <Grid container spacing={6}>
-        {events.map(event => (
+    <Grid container spacing={6}>
+      {events && events.length > 0 ? (
+        events.map(event => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={event.key}>
             <ShowCardOnDashboard event={event} />
           </Grid>
-        ))}
-      </Grid>
-    </ApexChartWrapper>
+        ))
+      ) : (
+        <p>No events available.</p> // Display message if no events
+      )}
+    </Grid>
+  </ApexChartWrapper>
   )
 }
 
