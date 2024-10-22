@@ -29,9 +29,11 @@ const Dashboard = ({ events = [], error }) => {
 export async function getServerSideProps() {
   try {
     const events = await fetchAllEvents()
+    
     return { props: { events } }
   } catch (error) {
     console.error('Error fetching events:', error)
+    
     return { props: { events: [], error: 'Failed to fetch events' } }
   }
 }

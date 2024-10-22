@@ -85,7 +85,7 @@ const LoginPage = () => {
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src='/images/logos/fav.png' width={'70%'} />
+            <img src='/images/logos/fav.png' width={'70%'} alt=""/>
             <Typography
               variant='h6'
               sx={{
