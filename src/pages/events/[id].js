@@ -5,8 +5,10 @@ import CardBodyEvent from 'src/views/cards/CardBodyEvent'
 import { fetchAllEventbuID } from 'src/configs/apiService'
 
 const Events = ({ event = {}, error }) => {
-  console.log(event)
-  return (
+  if (error) {
+    return <p>Error loading events: {error}</p>
+  }
+  return event.length > 0 ? (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={6}>
         <EventByID event={event} />
@@ -19,6 +21,8 @@ const Events = ({ event = {}, error }) => {
         <CardSupport />
       </Grid> */}
     </Grid>
+  ) : (
+    <p>No events available.</p>
   )
 }
 
