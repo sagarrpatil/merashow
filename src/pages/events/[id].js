@@ -4,11 +4,11 @@ import EventByID from 'src/views/cards/EventByID'
 import CardBodyEvent from 'src/views/cards/CardBodyEvent'
 import { fetchAllEventbuID } from 'src/configs/apiService'
 
-const Events = ({ event = {}, error }) => {
+const Events = ({ event = null, error }) => {
   if (error) {
     return <p>Error loading events: {error}</p>
   }
-  return event.length > 0 ? (
+  return event !== null ? (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={6}>
         <EventByID event={event} />
