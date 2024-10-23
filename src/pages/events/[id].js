@@ -39,6 +39,6 @@ export async function getServerSideProps(context) {
   } catch (error) {
     console.error('Error fetching events:', error)
 
-    return { props: { events: [], error: 'Failed to fetch events' } }
+    return { props: { events: null, error: 'Failed to fetch events' } }
   }
 }
