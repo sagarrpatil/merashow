@@ -20,3 +20,14 @@ export const fetchAllEvents = () => {
       throw err
     })
 }
+export const fetchAllEventbuID = id => {
+  return axios
+    .get(baseApiURL + 'api/geteventbyID/' + id)
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.error('Error fetching events:', err)
+      throw err
+    })
+}

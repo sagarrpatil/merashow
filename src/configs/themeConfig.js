@@ -11,7 +11,7 @@ const themeConfig = {
   // ** Other Configs
   responsiveFontSizes: true /* true | false */,
   disableRipple: false /* true | false */,
-  BaseApiURL: 'https://api.merashow.com/'
+  BaseApiURL: 'https://merashowapi.vercel.app/'
 }
 
 export default themeConfig

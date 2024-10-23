@@ -41,7 +41,7 @@ const Card = theme => {
           '& + .MuiCardContent-root': {
             paddingTop: 0
           },
-        
+
           '& + .MuiCardActions-root': {
             paddingTop: 0
           }
