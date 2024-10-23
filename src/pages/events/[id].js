@@ -8,6 +8,7 @@ const Events = ({ event = null, error }) => {
   if (error) {
     return <p>Error loading events: {error}</p>
   }
+
   return event !== null ? (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={6}>
@@ -30,11 +31,14 @@ export default Events
 
 export async function getServerSideProps(context) {
   const { id } = context.query
+
   try {
     const event = await fetchAllEventbuID(id)
+
     return { props: { event } }
   } catch (error) {
     console.error('Error fetching events:', error)
+
     return { props: { events: [], error: 'Failed to fetch events' } }
   }
 }
