@@ -14,6 +14,7 @@ const FixedButton = styled(Button)(({ theme }) => ({
   right: theme.spacing(0), // Adjusts the distance from the right
   zIndex: 1000 // Ensures it stays above other content
 }))
+
 const FixedButtonLeft = styled(Card)(({ theme }) => ({
   position: 'fixed',
   borderRadius: '0px 20px 20px 0px',
