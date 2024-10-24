@@ -6,13 +6,14 @@ import { fetchAllEventbuID } from 'src/configs/apiService'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/system'
 import { Card } from '@mui/material'
+import TicketConfirmation from 'mdi-material-ui/TicketConfirmationOutline'
 
 const FixedButton = styled(Button)(({ theme }) => ({
   position: 'fixed',
   borderRadius: '20px 0 0 20px',
   bottom: theme.spacing(10), // Adjusts the distance from the bottom
   right: theme.spacing(0), // Adjusts the distance from the right
-  zIndex: 1000 // Ensures it stays above other content
+  zIndex: 1000
 }))
 
 const FixedButtonLeft = styled(Card)(({ theme }) => ({
@@ -62,7 +63,9 @@ const Events = ({ event = null, error }) => {
             )}{' '}
             onwards
           </FixedButtonLeft>
-          <FixedButton variant='contained'>Book Now</FixedButton>
+          <FixedButton variant='contained'>
+            <TicketConfirmation sx={{ fontSize: 20, mr: 2 }} /> Book Now
+          </FixedButton>
         </Grid>
       </>
     ) : (
