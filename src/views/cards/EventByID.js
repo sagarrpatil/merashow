@@ -23,6 +23,7 @@ import Linkedin from 'mdi-material-ui/Linkedin'
 import GooglePlus from 'mdi-material-ui/GooglePlus'
 import moment from 'moment'
 import ShareVariant from 'mdi-material-ui/ShareVariant'
+import MapMarkerQuestionOutline from 'mdi-material-ui/MapMarkerOutline'
 import { Divider } from '@mui/material'
 
 // Styled Grid component
@@ -85,7 +86,7 @@ const EventByID = props => {
             // paddingLeft: ['1.5rem !important', '1.5rem !important', '0 !important']
           }}
         >
-          <CardContent sx={{ p: 3 }}>
+          <CardContent sx={{ p: 3, pb: 0 }}>
             <Typography variant='h6' sx={{ marginBottom: 1 }}>
               {props.event.title}
             </Typography>
@@ -96,27 +97,40 @@ const EventByID = props => {
               <CalendarClockOutline style={{ fontSize: 17, marginBottom: -3 }} />{' '}
               {moment(props.event.startDate).format('ddd DD MMM YYYY - hh: mm a')} onwards
             </Typography>
-            <Typography sx={{ fontWeight: 500, marginBottom: 1 }}>
-              Price: ₹{' '}
-              <Box component='span' sx={{ fontWeight: 'bold' }}>
-                {lowestPrice} onwards
-              </Box>
-            </Typography>
           </CardContent>
           {/* <Divider  /> */}
           <CardActions className='card-action-dense'>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: 3 }}>
-              <Button onClick={() => window.open(props.event.googleLocation)}>location</Button>
-              <IconButton
-                id='long-button'
-                aria-label='share'
-                aria-haspopup='true'
-                aria-controls='long-menu'
-                aria-expanded={open ? 'true' : undefined}
-                onClick={shareOption}
-              >
-                <ShareVariant fontSize='small' />
-              </IconButton>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: 3, pl: 1.7 }}>
+              <div>
+                <Typography sx={{ fontWeight: 500 }}>
+                  Price: ₹{' '}
+                  <Box component='span' sx={{ fontWeight: 'bold' }}>
+                    {lowestPrice} onwards
+                  </Box>
+                </Typography>
+              </div>
+              <div>
+                <IconButton
+                  id='long-button'
+                  aria-label='share'
+                  aria-haspopup='true'
+                  aria-controls='long-menu'
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={() => window.open(props.event.googleLocation)}
+                >
+                  <MapMarkerQuestionOutline fontSize='small' />
+                </IconButton>
+                <IconButton
+                  id='long-button'
+                  aria-label='share'
+                  aria-haspopup='true'
+                  aria-controls='long-menu'
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={shareOption}
+                >
+                  <ShareVariant fontSize='small' />
+                </IconButton>
+              </div>
             </Box>
           </CardActions>
         </Grid>
