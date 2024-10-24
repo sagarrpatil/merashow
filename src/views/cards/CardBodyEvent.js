@@ -26,7 +26,7 @@ const CardBodyEvent = ({ events }) => {
   return (
     <Card>
       <Grid container spacing={6}>
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={12}>
           <CardContent sx={{ padding: theme => `${theme.spacing(3.25, 5.75, 6.25)} !important` }}>
             <Typography variant='h6' sx={{ marginBottom: 1 }}>
               About
