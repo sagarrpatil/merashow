@@ -15,7 +15,7 @@ import CardActions from '@mui/material/CardActions'
 import Grid from '@mui/material/Grid'
 import MapMarkerRadius from 'mdi-material-ui/MapMarkerRadius'
 import CalendarClockOutline from 'mdi-material-ui/CalendarClockOutline'
-// ** Icons Imports
+import useMediaQuery from '@mui/material/useMediaQuery'
 import Twitter from 'mdi-material-ui/Twitter'
 import StoreMarker from 'mdi-material-ui/StoreMarker'
 import Facebook from 'mdi-material-ui/Facebook'
@@ -42,7 +42,7 @@ const EventByID = props => {
   // ** State
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
-
+  const matches = useMediaQuery('(max-width:800px)')
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -74,7 +74,7 @@ const EventByID = props => {
     <Card>
       <Grid container spacing={6}>
         <StyledGrid item md={12} xs={12} lg={12}>
-          <img height={200} alt={props.event.title} src={props.event.img} />
+          <img height={200} alt={props.event.title} src={props.event.img} width={matches ? '100%' : ''} />
         </StyledGrid>
         <Grid
           item

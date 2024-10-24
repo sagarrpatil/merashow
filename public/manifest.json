@@ -1,0 +1,23 @@
+
+{
+  "name": "Mera Show",
+  "short_name": "Mera Show",
+  "description": "Discover and book tickets for the most exciting upcoming events in Pune! Explore a variety of entertainment options, including music, comedy, workshops, and online events near you on Mera Show.",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary"
+}

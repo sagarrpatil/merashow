@@ -7,7 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 // ** Icons Imports
 import Menu from 'mdi-material-ui/Menu'
 import Magnify from 'mdi-material-ui/Magnify'
-
+import { useRouter } from 'next/router'
 // ** Components
 import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
@@ -15,6 +15,7 @@ import NotificationDropdown from 'src/@core/layouts/components/shared-components
 
 const AppBarContent = props => {
   // ** Props
+  const router = useRouter()
   const { hidden, settings, saveSettings, toggleNavVisibility } = props
   const matches = useMediaQuery('(max-width:1199px)')
   // ** Hook
@@ -32,7 +33,14 @@ const AppBarContent = props => {
             <Menu />
           </IconButton>
         ) : null}
-        {matches && <img src='/images/logos/fav.png' width={'130px'} style={{ paddingLeft: 10 }} />}
+        {matches && (
+          <img
+            src='/images/logos/fav.png'
+            width={'130px'}
+            style={{ paddingLeft: 10, cursor: 'pointer' }}
+            onClick={() => router.push(`/`)}
+          />
+        )}
         {/* <TextField
           size='small'
           sx={{ '& .MuiOutlinedInput-root': { borderRadius: 4 } }}

@@ -15,14 +15,18 @@ class CustomDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
+          <link rel='manifest' href='/manifest.json' />
+          <meta name='theme-color' content='#cd0083' />
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
             rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
           />
-          <link rel='apple-touch-icon' sizes='180x180' href='/images/apple-touch-icon.png' />
+          <link rel='apple-touch-icon' sizes='180x180' href='/images/favicon.png' />
           <link rel='shortcut icon' href='/images/favicon.png' />
+          <meta name='apple-mobile-web-app-capable' content='yes' />
+          <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
         </Head>
         <body>
           <Main />

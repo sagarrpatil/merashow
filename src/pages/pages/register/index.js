@@ -85,8 +85,7 @@ const RegisterPage = () => {
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src='/images/logos/fav.png' width={'70%'} alt='' />
-         
+            <img src='/images/logos/fav.png' width={'70%'} alt='mera show' />
           </Box>
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>

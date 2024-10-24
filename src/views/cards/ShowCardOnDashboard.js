@@ -16,7 +16,7 @@ const ShowCardOnDashboard = ({ event }) => {
   const router = useRouter()
   return (
     <Card sx={{ cursor: 'pointer' }} onClick={() => router.push(`/events/${event.key}`)}>
-      <CardMedia sx={{ height: '8.375rem' }} image={event.img} />
+      <CardMedia sx={{ height: '8.375rem', width: '100%' }} image={event.img} />
       <CardContent sx={{ p: 2, display: 'flex', alignItems: 'center', mb: 0 }}>
         <div style={{ textAlign: 'center', paddingTop: '4px', textTransform: 'uppercase', fontWeight: 400 }}>
           <Typography variant='body2' sx={{ color: 'rgb(205, 0, 131)', fontSize: 10 }}>
@@ -33,7 +33,9 @@ const ShowCardOnDashboard = ({ event }) => {
         <Divider orientation='vertical' flexItem sx={{ mx: 1 }} />
 
         <div style={{ paddingLeft: 10 }}>
-          <Typography variant='body1'>{event.title}</Typography>
+          <Typography variant='body1' style={{ fontSize: 15 }}>
+            {event.title}
+          </Typography>
           <Typography variant='body2' color='text.secondary'>
             ₹ {lowestPrice} onwards
           </Typography>
