@@ -90,24 +90,27 @@ const EventByID = props => {
             <Typography variant='h6' sx={{ marginBottom: 1 }}>
               {props.event.title}
             </Typography>
-            <Typography variant='body2' sx={{ marginBottom: 1 }}>
-              <MapMarkerRadius style={{ fontSize: 17, marginBottom: -3 }} /> {props.event.venue}
+            <Typography variant='body2' sx={{ marginBottom: 2 }}>
+              <MapMarkerRadius sx={{ fontSize: 17, marginBottom: -0.8, color: 'primary.main', mr: 2 }} />{' '}
+              {props.event.venue}
             </Typography>
-            <Typography variant='body2' sx={{ marginBottom: 3 }}>
-              <CalendarClockOutline style={{ fontSize: 17, marginBottom: -3 }} />{' '}
-              {moment(props.event.startDate).format('ddd DD MMM YYYY - hh: mm a')} onwards
+            <Typography variant='body2' sx={{ marginBottom: 0 }}>
+              <CalendarClockOutline sx={{ fontSize: 17, marginBottom: -0.8, color: 'primary.main', mr: 2 }} />{' '}
+              {moment(props.event.startDate).format('ddd DD MMM YYYY - hh:mm a')} onwards
             </Typography>
           </CardContent>
           {/* <Divider  /> */}
           <CardActions className='card-action-dense'>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: 3, pl: 1.7 }}>
               <div>
-                <Typography sx={{ fontWeight: 500 }}>
-                  Price: ₹{' '}
-                  <Box component='span' sx={{ fontWeight: 'bold' }}>
-                    {lowestPrice} onwards
-                  </Box>
-                </Typography>
+                {!matches && (
+                  <Typography sx={{ fontWeight: 500 }}>
+                    Price: ₹{' '}
+                    <Box component='span' sx={{ fontWeight: 'bold' }}>
+                      {lowestPrice} onwards
+                    </Box>
+                  </Typography>
+                )}
               </div>
               <div>
                 <IconButton

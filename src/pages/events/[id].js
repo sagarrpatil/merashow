@@ -22,7 +22,11 @@ const FixedButtonLeft = styled(Card)(({ theme }) => ({
   left: theme.spacing(0), // Adjusts the distance from the right
   zIndex: 1000,
   color: '#000',
-  background: '#fff' // Ensures it stays above other content
+  background: '#ffe8ec',
+  padding: 10,
+  width: 'auto',
+  display: 'flex',
+  fontWeight: '700'
 }))
 
 const Events = ({ event = null, error }) => {
@@ -40,7 +44,7 @@ const Events = ({ event = null, error }) => {
           <link rel='shortcut icon' href={event.img} />
         </Head>
         <Grid container spacing={6}>
-          <Grid item xs={12} sm={12} lg={12}>
+          <Grid item xs={12} sm={12} lg={12} sx={{ mb: 25 }}>
             <EventByID event={event} />
             <CardBodyEvent events={event} />
           </Grid>
@@ -50,9 +54,14 @@ const Events = ({ event = null, error }) => {
           {/* <Grid item xs={12} sm={6} md={4}>
         <CardSupport />
       </Grid> */}
-          {/* <FixedButtonLeft variant="contained" disabled>
-            price
-       </FixedButtonLeft> */}
+          <FixedButtonLeft variant='contained' disabled>
+            ₹{' '}
+            {event.Pass.reduce(
+              (minPrice, pass) => (!pass.addon && pass.price < minPrice ? pass.price : minPrice),
+              Infinity
+            )}{' '}
+            onwards
+          </FixedButtonLeft>
           <FixedButton variant='contained'>Book Now</FixedButton>
         </Grid>
       </>
