@@ -75,6 +75,7 @@ const VerticalLayout = props => {
           <ContentWrapper
             className='layout-page-content'
             sx={{
+              paddingTop: 20,
               ...(contentWidth === 'boxed' && {
                 mx: 'auto',
                 '@media (min-width:1440px)': { maxWidth: 1440 },
@@ -85,7 +86,7 @@ const VerticalLayout = props => {
             {children}
           </ContentWrapper>
 
-          <Footer {...props} />
+          {/* <Footer {...props} /> */}
 
           <DatePickerWrapper sx={{ zIndex: 11 }}>
             <Box id='react-datepicker-portal'></Box>

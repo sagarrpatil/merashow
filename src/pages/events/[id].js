@@ -11,7 +11,7 @@ const Events = ({ event = null, error }) => {
 
   return event !== null ? (
     <Grid container spacing={6}>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={12} lg={12}>
         <EventByID event={event} />
         <CardBodyEvent events={event} />
       </Grid>

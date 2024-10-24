@@ -73,16 +73,16 @@ const EventByID = props => {
   return (
     <Card>
       <Grid container spacing={6}>
-        <StyledGrid item md={5} xs={12}>
-          <img width={'100%'} height={176} alt={props.event.title} src={props.event.img} />
+        <StyledGrid item md={12} xs={12} lg={12}>
+          <img height={200} alt={props.event.title} src={props.event.img} />
         </StyledGrid>
         <Grid
           item
           xs={12}
           md={7}
           sx={{
-            paddingTop: ['0 !important', '0 !important', '1.5rem !important'],
-            paddingLeft: ['1.5rem !important', '1.5rem !important', '0 !important']
+            paddingTop: ['0 !important', '0 !important', '1.5rem !important']
+            // paddingLeft: ['1.5rem !important', '1.5rem !important', '0 !important']
           }}
         >
           <CardContent sx={{ p: 3 }}>
@@ -106,7 +106,7 @@ const EventByID = props => {
           {/* <Divider  /> */}
           <CardActions className='card-action-dense'>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: 3 }}>
-              <Button onClick={() => window.open(props.event.googleLocation)}>View on maps</Button>
+              <Button onClick={() => window.open(props.event.googleLocation)}>location</Button>
               <IconButton
                 id='long-button'
                 aria-label='share'

@@ -2,9 +2,8 @@
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import InputAdornment from '@mui/material/InputAdornment'
-
+import useMediaQuery from '@mui/material/useMediaQuery'
 // ** Icons Imports
 import Menu from 'mdi-material-ui/Menu'
 import Magnify from 'mdi-material-ui/Magnify'
@@ -17,7 +16,7 @@ import NotificationDropdown from 'src/@core/layouts/components/shared-components
 const AppBarContent = props => {
   // ** Props
   const { hidden, settings, saveSettings, toggleNavVisibility } = props
-
+  const matches = useMediaQuery('(max-width:1199px)')
   // ** Hook
   const hiddenSm = useMediaQuery(theme => theme.breakpoints.down('sm'))
 
@@ -33,7 +32,8 @@ const AppBarContent = props => {
             <Menu />
           </IconButton>
         ) : null}
-        <TextField
+        {matches && <img src='/images/logos/fav.png' width={'130px'} style={{ paddingLeft: 10 }} />}
+        {/* <TextField
           size='small'
           sx={{ '& .MuiOutlinedInput-root': { borderRadius: 4 } }}
           InputProps={{
@@ -43,20 +43,11 @@ const AppBarContent = props => {
               </InputAdornment>
             )
           }}
-        />
+        /> */}
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
-        {hiddenSm ? null : (
-          <Box
-            component='a'
-            target='_blank'
-            rel='noreferrer'
-            sx={{ mr: 4, display: 'flex' }}
-            href='https://github.com/themeselection/Mera Show-mui-react-nextjs-admin-template-free'
-          ></Box>
-        )}
         <ModeToggler settings={settings} saveSettings={saveSettings} />
-        <NotificationDropdown />
+        {/* <NotificationDropdown /> */}
         <UserDropdown />
       </Box>
     </Box>
