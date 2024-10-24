@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -20,6 +20,8 @@ import { styled, useTheme } from '@mui/material/styles'
 import MuiCard from '@mui/material/Card'
 import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel from '@mui/material/FormControlLabel'
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth'
+import { auth, googleProvider } from 'src/firebaseConfig'
 
 // ** Icons Imports
 import Google from 'mdi-material-ui/Google'
@@ -80,6 +82,30 @@ const RegisterPage = () => {
     event.preventDefault()
   }
 
+  const [user, setUser] = useState(null)
+
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider)
+      console.log(result) // Use auth and provider from Firebase v9
+      setUser(result.user) // Set the user after successful login
+      localStorage.setItem('googleAccount', JSON.stringify(result.user))
+      window.location.href = '/'
+    } catch (error) {
+      console.error('Error during Google sign-in:', error)
+    }
+  }
+
+  // Handle user authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setUser(user || null)
+    })
+
+    // Cleanup the listener on unmount
+    return () => unsubscribe()
+  }, [])
+
   return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
@@ -118,20 +144,24 @@ const RegisterPage = () => {
                 }
               />
             </FormControl>
+
+            {/* Blank line between sections */}
             <FormControlLabel
               control={<Checkbox />}
               label={
                 <Fragment>
                   <span>I agree to </span>
-                  <Link href='/' passHref>
-                    <LinkStyled onClick={e => e.preventDefault()}>privacy policy & terms</LinkStyled>
-                  </Link>
+                  <LinkStyled onClick={e => window.open('https://merashow.com/TermsandCondition.html')}>
+                    privacy policy & terms
+                  </LinkStyled>
                 </Fragment>
               }
             />
+
             <Button fullWidth size='large' type='submit' variant='contained' sx={{ marginBottom: 7 }}>
               Sign up
             </Button>
+
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ marginRight: 2 }}>
                 Already have an account?
@@ -142,38 +172,27 @@ const RegisterPage = () => {
                 </Link>
               </Typography>
             </Box>
+
             <Divider sx={{ my: 5 }}>or</Divider>
+
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Link href='/' passHref>
-                <IconButton component='a' onClick={e => e.preventDefault()}>
-                  <Facebook sx={{ color: '#497ce2' }} />
-                </IconButton>
-              </Link>
-              <Link href='/' passHref>
-                <IconButton component='a' onClick={e => e.preventDefault()}>
-                  <Twitter sx={{ color: '#1da1f2' }} />
-                </IconButton>
-              </Link>
-              <Link href='/' passHref>
-                <IconButton component='a' onClick={e => e.preventDefault()}>
-                  <Github
-                    sx={{ color: theme => (theme.palette.mode === 'light' ? '#272727' : theme.palette.grey[300]) }}
-                  />
-                </IconButton>
-              </Link>
-              <Link href='/' passHref>
-                <IconButton component='a' onClick={e => e.preventDefault()}>
-                  <Google sx={{ color: '#db4437' }} />
-                </IconButton>
-              </Link>
+              <IconButton component='a' onClick={e => e.preventDefault()}>
+                <Facebook sx={{ color: '#497ce2' }} />
+              </IconButton>
+
+              <IconButton component='a' onClick={e => signInWithGoogle()}>
+                <Google sx={{ color: '#db4437' }} />
+              </IconButton>
             </Box>
           </form>
         </CardContent>
       </Card>
+
       <FooterIllustrationsV1 />
     </Box>
   )
 }
+
 RegisterPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
 export default RegisterPage

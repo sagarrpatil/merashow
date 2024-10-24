@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -21,6 +21,8 @@ import { styled, useTheme } from '@mui/material/styles'
 import MuiCard from '@mui/material/Card'
 import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel from '@mui/material/FormControlLabel'
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth'
+import { auth, googleProvider, facebookProvider } from 'src/firebaseConfig'
 
 // ** Icons Imports
 import Google from 'mdi-material-ui/Google'
@@ -76,9 +78,41 @@ const LoginPage = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
 
+  const [user, setUser] = useState(null)
+
   const handleMouseDownPassword = event => {
     event.preventDefault()
   }
+
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider)
+      console.log(result) // Use auth and provider from Firebase v9
+      setUser(result.user) // Set the user after successful login
+      localStorage.setItem('googleAccount', JSON.stringify(result.user))
+      window.location.href = '/'
+    } catch (error) {
+      console.error('Error during Google sign-in:', error)
+    }
+  }
+
+  const signInWithFacebook = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider)
+      console.log(result.user) // The logged-in user's info
+    } catch (error) {
+      console.error('Error during Facebook sign-in:', error)
+    }
+  }
+
+  // Handle user authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setUser(user || null)
+    })
+
+    return () => unsubscribe() // Cleanup the listener on unmount
+  }, [])
 
   return (
     <Box className='content-center'>
@@ -103,7 +137,7 @@ const LoginPage = () => {
             </Typography>
             <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
           </Box>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
+          <form noValidate autoComplete='off'>
             <TextField autoFocus fullWidth id='email' label='Email' sx={{ marginBottom: 4 }} />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
@@ -156,17 +190,12 @@ const LoginPage = () => {
             </Box>
             <Divider sx={{ my: 5 }}>or</Divider>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Link href='/' passHref>
-                <IconButton component='a' onClick={e => e.preventDefault()}>
-                  <Facebook sx={{ color: '#497ce2' }} />
-                </IconButton>
-              </Link>
-
-              <Link href='/' passHref>
-                <IconButton component='a' onClick={e => e.preventDefault()}>
-                  <Google sx={{ color: '#db4437' }} />
-                </IconButton>
-              </Link>
+              <IconButton component='a' onClick={e => signInWithFacebook()}>
+                <Facebook sx={{ color: '#497ce2' }} />
+              </IconButton>
+              <IconButton component='a' onClick={e => signInWithGoogle()}>
+                <Google sx={{ color: '#db4437' }} />
+              </IconButton>
             </Box>
           </form>
         </CardContent>
@@ -175,6 +204,7 @@ const LoginPage = () => {
     </Box>
   )
 }
+
 LoginPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
 export default LoginPage

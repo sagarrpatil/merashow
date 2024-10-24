@@ -16,7 +16,7 @@ class CustomDocument extends Document {
       <Html lang='en'>
         <Head>
           <link rel='manifest' href='/manifest.json' />
-          <meta name='theme-color' content='#cd0083' />
+          <meta name='theme-color' content='#210015' />
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link

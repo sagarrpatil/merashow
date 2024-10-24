@@ -6,23 +6,22 @@ import { fetchAllEvents } from 'src/configs/apiService'
 const Dashboard = ({ events = [], error }) => {
   if (error) {
     return <p>Error loading events: {error}</p>
-  }
-
-  return (
-    <ApexChartWrapper>
-      <Grid container spacing={6}>
-        {events.length > 0 ? (
-          events.map(event => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={event.key}>
-              <ShowCardOnDashboard event={event} />
-            </Grid>
-          ))
-        ) : (
-          <p>No events available.</p>
-        )}
-      </Grid>
-    </ApexChartWrapper>
-  )
+  } else
+    return (
+      <ApexChartWrapper>
+        <Grid container spacing={6}>
+          {events.length > 0 ? (
+            events.map(event => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={event.key}>
+                <ShowCardOnDashboard event={event} />
+              </Grid>
+            ))
+          ) : (
+            <p>No events available.</p>
+          )}
+        </Grid>
+      </ApexChartWrapper>
+    )
 }
 
 // Fetch data on the server side
