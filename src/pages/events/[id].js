@@ -3,6 +3,26 @@ import Grid from '@mui/material/Grid'
 import EventByID from 'src/views/cards/EventByID'
 import CardBodyEvent from 'src/views/cards/CardBodyEvent'
 import { fetchAllEventbuID } from 'src/configs/apiService'
+import Button from '@mui/material/Button'
+import { styled } from '@mui/system'
+import { Card } from '@mui/material'
+
+const FixedButton = styled(Button)(({ theme }) => ({
+  position: 'fixed',
+  borderRadius: '20px 0 0 20px',
+  bottom: theme.spacing(10), // Adjusts the distance from the bottom
+  right: theme.spacing(0), // Adjusts the distance from the right
+  zIndex: 1000 // Ensures it stays above other content
+}))
+const FixedButtonLeft = styled(Card)(({ theme }) => ({
+  position: 'fixed',
+  borderRadius: '0px 20px 20px 0px',
+  bottom: theme.spacing(10), // Adjusts the distance from the bottom
+  left: theme.spacing(0), // Adjusts the distance from the right
+  zIndex: 1000,
+  color: '#000',
+  background: '#fff' // Ensures it stays above other content
+}))
 
 const Events = ({ event = null, error }) => {
   if (error) {
@@ -29,6 +49,10 @@ const Events = ({ event = null, error }) => {
           {/* <Grid item xs={12} sm={6} md={4}>
         <CardSupport />
       </Grid> */}
+          {/* <FixedButtonLeft variant="contained" disabled>
+            price
+       </FixedButtonLeft> */}
+          <FixedButton variant='contained'>Book Now</FixedButton>
         </Grid>
       </>
     ) : (
